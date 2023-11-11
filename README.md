@@ -1,6 +1,6 @@
-# Note: If the select doesn't open on click, Please disable all extensions because any extensions that can alter the DOM can cause hydration error!
+### Note: If the select doesn't open on click, Please disable all extensions because any extensions that can alter the DOM can cause hydration error!
 
-# Lưu ý: nếu click vào thẻ dropdown để chọn mà ko được, xin hãy disable extensions của trình duyệt vì những extensions có chức năng thay đổi DOM sẽ làm lỗi chức năng hydration (chức năng đồng bộ UI phía client và server) của framework (vd như Extensions Adblock, Dark Reader)
+### Lưu ý: nếu click vào thẻ select để chọn mà ko được, xin hãy disable extensions của trình duyệt vì những extensions có chức năng thay đổi DOM sẽ làm lỗi chức năng hydration (chức năng đồng bộ UI phía client và server) của framework (vd như Extensions Adblock, Dark Reader)
 
 # Welcome to Remix!
 
