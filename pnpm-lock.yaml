@@ -11,6 +11,7 @@ specifiers:
   '@remix-run/node': ^2.2.0
   '@remix-run/react': ^2.2.0
   '@remix-run/serve': ^2.2.0
+  '@types/lodash': ^4.14.201
   '@types/react': ^18.2.20
   '@types/react-dom': ^18.2.7
   autoprefixer: ^10.4.16
@@ -18,6 +19,7 @@ specifiers:
   clsx: ^2.0.0
   eslint: ^8.38.0
   isbot: ^3.6.8
+  lodash: 4.17.21
   lucide-react: ^0.292.0
   postcss: 8.1.0
   react: ^18.2.0
@@ -41,6 +43,7 @@ dependencies:
   class-variance-authority: 0.7.0
   clsx: 2.0.0
   isbot: 3.7.0
+  lodash: 4.17.21
   lucide-react: 0.292.0_react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -52,6 +55,7 @@ dependencies:
 devDependencies:
   '@remix-run/dev': 2.2.0_2s6qvyclebqlbo46bess2jrd4m
   '@remix-run/eslint-config': 2.2.0_5ofcighlok3knj47xdzac3pjf4
+  '@types/lodash': 4.14.201
   '@types/react': 18.2.37
   '@types/react-dom': 18.2.15
   autoprefixer: 10.4.16_postcss@8.1.0
@@ -1889,6 +1893,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash/4.14.201:
+    resolution: {integrity: sha512-y9euML0cim1JrykNxADLfaG0FgD1g/yTHwUs/Jg9ZIU7WKj2/4IW9Lbb1WZbvck78W/lfGXFfe+u2EGfIJXdLQ==}
     dev: true
 
   /@types/mdast/3.0.15:
@@ -4562,7 +4570,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}

@@ -18,7 +18,7 @@ interface SelectProps {
 
 export function SelectTag({ name, title, items }: SelectProps) {
   return (
-    <>
+    <div>
       <Select name={name}>
         <SelectTrigger className='w-[800px]'>
           <SelectValue placeholder={title} />
@@ -31,16 +31,6 @@ export function SelectTag({ name, title, items }: SelectProps) {
           ))}
         </SelectContent>
       </Select>
-      {/* <Select>
-        <SelectTrigger className='w-[180px]'>
-          <SelectValue placeholder='Theme' />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value='light'>Light</SelectItem>
-          <SelectItem value='dark'>Dark</SelectItem>
-          <SelectItem value='system'>System</SelectItem>
-        </SelectContent>
-      </Select> */}
-    </>
+    </div>
   );
 }

@@ -1,3 +1,8 @@
+import _ from 'lodash';
+import { useEffect, useRef } from 'react';
+import { TableRow, TableCell } from '~/components/ui/table';
+import { Button } from '~/components/ui/button';
+
 interface QuestionProps {
   category: string;
   type: string;
@@ -15,13 +20,41 @@ export default function QuestionCard({
   correct_answer,
   incorrect_answers,
 }: QuestionProps) {
+  const shuffledAnswers = useRef<any>([]);
+  useEffect(() => {
+    // Assuming correct_answer and incorrect_answers are available here
+    if (shuffledAnswers.current.length === 0) {
+      shuffledAnswers.current = _.shuffle([
+        correct_answer,
+        ...incorrect_answers,
+      ]);
+    }
+  }, [correct_answer, incorrect_answers]);
   return (
-    <div>
-      <h1>
-        Question: <span dangerouslySetInnerHTML={{ __html: question }} />
-      </h1>
-      <h1>category: {category}</h1>
-      <h1>difficulty: {difficulty}</h1>
-    </div>
+    <TableRow>
+      <TableCell>
+        <span dangerouslySetInnerHTML={{ __html: question }} />
+      </TableCell>
+      <TableCell>{difficulty}</TableCell>
+      <TableCell>{category}</TableCell>
+      {/* <TableCell>{type}</TableCell> */}
+      <TableCell>
+        {type === 'boolean' ? (
+          <div className='flex flex-col gap-2'>
+            <Button>True</Button>
+            <Button>False</Button>
+          </div>
+        ) : (
+          <div className='flex flex-col gap-2'>
+            {shuffledAnswers.current.map((answer: string) => (
+              <Button>
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
+              </Button>
+            ))}
+          </div>
+        )}
+      </TableCell>
+      <TableCell></TableCell>
+    </TableRow>
   );
 }

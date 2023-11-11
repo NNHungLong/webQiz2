@@ -5,6 +5,13 @@ import type { LoaderFunctionArgs } from '@remix-run/node';
 
 import TimeoutClock from '~/components/timeoutClock';
 import QuestionCard from '~/components/question';
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '~/components/ui/table';
 
 interface ResultItem {
   category: string;
@@ -19,6 +26,7 @@ interface LoaderResponse {
   response_code: number;
   results: ResultItem[];
   duration: string;
+  index?: number;
 }
 
 export const loader: LoaderFunction = async ({
@@ -36,7 +44,17 @@ export const loader: LoaderFunction = async ({
   });
   const response = await fetch(
     `https://opentdb.com/api.php?${params.toString()}`
-  ).then((response) => response.json());
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return {
+        response: data.response_code,
+        results: data.results.map((item: ResultItem, index: number) => ({
+          index: index,
+          ...item,
+        })),
+      };
+    });
   return {
     response_code: response.response,
     results: response.results,
@@ -64,9 +82,23 @@ export default function Quiz() {
   return (
     <div>
       <TimeoutClock timeLeft={timeLeft} setCountDown={setCountDown} />
-      {results.map((item, index) => (
-        <QuestionCard key={index} {...item} />
-      ))}
+      <Table className='table-auto'>
+        <TableHeader>
+          <TableRow>
+            <TableHead className=''>Question</TableHead>
+            <TableHead>Difficulty</TableHead>
+            <TableHead>Category</TableHead>
+            {/* <TableHead>Type</TableHead> */}
+            <TableHead>Answers</TableHead>
+            <TableHead>Result</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((item, index) => (
+            <QuestionCard key={item?.index || index} {...item} />
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
