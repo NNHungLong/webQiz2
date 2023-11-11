@@ -62,11 +62,11 @@ export default function Quiz() {
     return () => clearInterval(countDown);
   };
   return (
-    <>
+    <div>
       <TimeoutClock timeLeft={timeLeft} setCountDown={setCountDown} />
       {results.map((item, index) => (
         <QuestionCard key={index} {...item} />
       ))}
-    </>
+    </div>
   );
 }

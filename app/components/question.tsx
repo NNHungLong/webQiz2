@@ -22,7 +22,6 @@ export default function QuestionCard({
       </h1>
       <h1>category: {category}</h1>
       <h1>difficulty: {difficulty}</h1>
-      {/* <h1>type: {type}</h1> */}
     </div>
   );
 }

@@ -74,7 +74,7 @@ export default function Index() {
   };
   return (
     <>
-      <Form onSubmit={submitForm} className='flex gap-4'>
+      <Form onSubmit={submitForm} className=''>
         <SelectTag name='category' title='Category' items={Category} />
         <SelectTag name='difficulty' title='Difficulty' items={Difficulty} />
         <SelectTag name='type' title='Type' items={Type} />
