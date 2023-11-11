@@ -1,18 +1,13 @@
-import { useEffect, useState } from 'react';
-
 interface Props {
   timeLeft: number;
-  setCountDown: (time: number) => () => void;
 }
 
-export default function TimeoutClock({ timeLeft, setCountDown }: Props) {
-  useEffect(() => {
-    let clearCounDownInterval = setCountDown(timeLeft);
-    return clearCounDownInterval;
-  }, []);
+export default function TimeoutClock({ timeLeft }: Props) {
   return (
-    <div>
-      <h1>Time Remaining: {timeLeft}</h1>
+    <div className='m-4 font-bold text-lg'>
+      <h1 className='text-center'>
+        Time Remaining: {timeLeft + (timeLeft > 1 ? ' seconds' : ' second')}
+      </h1>
     </div>
   );
 }

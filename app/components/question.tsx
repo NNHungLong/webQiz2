@@ -1,9 +1,10 @@
 import _ from 'lodash';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TableRow, TableCell } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
 interface QuestionProps {
+  isComplete: boolean;
   category: string;
   type: string;
   difficulty: string;
@@ -19,7 +20,9 @@ export default function QuestionCard({
   question,
   correct_answer,
   incorrect_answers,
+  isComplete,
 }: QuestionProps) {
+  const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const shuffledAnswers = useRef<any>([]);
   useEffect(() => {
     // Assuming correct_answer and incorrect_answers are available here
@@ -30,6 +33,52 @@ export default function QuestionCard({
       ]);
     }
   }, [correct_answer, incorrect_answers]);
+
+  const selectAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isComplete) return;
+    setSelectedAnswer(e.currentTarget.innerText);
+  };
+
+  function htmlDecode(input: string) {
+    var doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+
+  const renderAnswers = () => {
+    if (type === 'boolean') {
+      return (
+        <div className='flex flex-col gap-2'>
+          <Button
+            onClick={selectAnswer}
+            variant={selectedAnswer === 'True' ? 'default' : 'outline'}
+          >
+            True
+          </Button>
+          <Button
+            onClick={selectAnswer}
+            variant={selectedAnswer === 'False' ? 'default' : 'outline'}
+          >
+            False
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <div className='flex flex-col gap-2'>
+          {shuffledAnswers.current.map((answer: string) => (
+            <Button
+              onClick={selectAnswer}
+              variant={
+                selectedAnswer === htmlDecode(answer) ? 'default' : 'outline'
+              }
+            >
+              <span dangerouslySetInnerHTML={{ __html: answer }} />
+            </Button>
+          ))}
+        </div>
+      );
+    }
+  };
   return (
     <TableRow>
       <TableCell>
@@ -38,23 +87,16 @@ export default function QuestionCard({
       <TableCell>{difficulty}</TableCell>
       <TableCell>{category}</TableCell>
       {/* <TableCell>{type}</TableCell> */}
-      <TableCell>
-        {type === 'boolean' ? (
-          <div className='flex flex-col gap-2'>
-            <Button>True</Button>
-            <Button>False</Button>
-          </div>
-        ) : (
-          <div className='flex flex-col gap-2'>
-            {shuffledAnswers.current.map((answer: string) => (
-              <Button>
-                <span dangerouslySetInnerHTML={{ __html: answer }} />
-              </Button>
-            ))}
-          </div>
-        )}
+      <TableCell>{renderAnswers()}</TableCell>
+      <TableCell
+        className={`${
+          isComplete ? 'opacity-100' : 'opacity-0'
+        } cursor-default flex justify-center items-center`}
+      >
+        <Button variant={'destructive'}>
+          <span dangerouslySetInnerHTML={{ __html: correct_answer }} />
+        </Button>
       </TableCell>
-      <TableCell></TableCell>
     </TableRow>
   );
 }
