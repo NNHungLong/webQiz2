@@ -89,7 +89,7 @@ export default function Index() {
         />
         <Input
           name='duration'
-          placeholder='duration'
+          placeholder='duration (seconds)'
           min='1'
           type='number'
           className={'w-[300px]'}
