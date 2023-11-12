@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { TableRow, TableCell } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
@@ -13,7 +13,7 @@ interface QuestionProps {
   incorrect_answers: string[];
 }
 
-export default function QuestionCard({
+function QuestionCard({
   category,
   type,
   difficulty,
@@ -100,3 +100,5 @@ export default function QuestionCard({
     </TableRow>
   );
 }
+
+export default memo(QuestionCard);
