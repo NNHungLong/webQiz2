@@ -5,6 +5,7 @@ import { SelectTag } from '~/components/select';
 import { Input } from '~/components/ui/input';
 import { Form } from '@remix-run/react';
 import { Button } from '~/components/ui/button';
+import * as Label from '@radix-ui/react-label';
 
 interface Category {
   id: string;
@@ -74,29 +75,69 @@ export default function Index() {
   };
   return (
     <>
-      <Form onSubmit={submitForm} className=''>
-        <SelectTag name='category' title='Category' items={Category} />
-        <SelectTag name='difficulty' title='Difficulty' items={Difficulty} />
-        <SelectTag name='type' title='Type' items={Type} />
-        <Input
-          name='amount'
-          placeholder='amount'
-          type='number'
-          min='1'
-          max='50'
-          className={'w-[300px]'}
-          required
-        />
-        <Input
-          name='duration'
-          placeholder='duration (seconds)'
-          min='1'
-          type='number'
-          className={'w-[300px]'}
-          required
-        />
-        <Button type='submit'>Submit</Button>
-      </Form>
+      <h1 className='text-bold font-bold text-3xl flex justify-center items-center mt-4'>
+        Quiz
+      </h1>
+      <h3 className='text-bold font-semibold text-xl flex justify-center items-center m-4'>
+        Select your quiz options to proceed
+      </h3>
+      <div className='flex justify-center items-center'>
+        <Form onSubmit={submitForm}>
+          <div className='flex justify-between items-center mt-2 gap-8'>
+            <Label.Root htmlFor='category'>Category</Label.Root>
+            <SelectTag
+              className='min-w-[300px]'
+              name='category'
+              title='All categories'
+              items={Category}
+            />
+          </div>
+          <div className='flex justify-between items-center mt-2 gap-8'>
+            <Label.Root htmlFor='difficulty'>Difficulty</Label.Root>
+            <SelectTag
+              name='difficulty'
+              className='min-w-[140px]'
+              title='All difficulties'
+              items={Difficulty}
+            />
+          </div>
+          <div className='flex justify-between items-center mt-2 gap-8'>
+            <Label.Root htmlFor='type'>Type</Label.Root>
+            <SelectTag
+              className='min-w-[150px]'
+              name='type'
+              title='All types'
+              items={Type}
+            />
+          </div>
+          <div className='flex justify-between items-center mt-2 gap-8'>
+            <Label.Root htmlFor='amount'>Amount</Label.Root>
+            <Input
+              name='amount'
+              placeholder='Amount'
+              type='number'
+              min='1'
+              max='50'
+              className={'w-[100px]'}
+              required
+            />
+          </div>
+          <div className='flex justify-between items-center mt-2 gap-8'>
+            <Label.Root htmlFor='duration'>Duration</Label.Root>
+            <Input
+              name='duration'
+              placeholder='(seconds)'
+              min='1'
+              type='number'
+              className={'w-[100px]'}
+              required
+            />
+          </div>
+          <div className='flex justify-center items-center mt-4'>
+            <Button type='submit'>Start Quiz</Button>
+          </div>
+        </Form>
+      </div>
     </>
   );
 }

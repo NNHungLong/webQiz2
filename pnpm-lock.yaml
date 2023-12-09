@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@hookform/resolvers': ^3.3.2
   '@radix-ui/react-label': ^2.0.2
+  '@radix-ui/react-scroll-area': ^1.0.5
   '@radix-ui/react-select': ^2.0.0
   '@radix-ui/react-slot': ^1.0.2
   '@remix-run/css-bundle': ^2.2.0
@@ -34,6 +35,7 @@ specifiers:
 dependencies:
   '@hookform/resolvers': 3.3.2_react-hook-form@7.48.2
   '@radix-ui/react-label': 2.0.2_odyphbpq4up353b3xkkenmy5wy
+  '@radix-ui/react-scroll-area': 1.0.5_odyphbpq4up353b3xkkenmy5wy
   '@radix-ui/react-select': 2.0.0_odyphbpq4up353b3xkkenmy5wy
   '@radix-ui/react-slot': 1.0.2_u5zja476buyywzbvglb2fbhaii
   '@remix-run/css-bundle': 2.2.0
@@ -1373,6 +1375,28 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@radix-ui/react-presence/1.0.1_odyphbpq4up353b3xkkenmy5wy:
+    resolution: {integrity: sha512-UXLW4UAbIY5ZjcvzjfRFo5gxva8QirC9hF7wRE4U5gz+TP0DbRk+//qyuAQ1McDxBt1xNMBTaciFGvEmJvAZCg==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@radix-ui/react-compose-refs': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@radix-ui/react-use-layout-effect': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@types/react': 18.2.37
+      '@types/react-dom': 18.2.15
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@radix-ui/react-primitive/1.0.3_odyphbpq4up353b3xkkenmy5wy:
     resolution: {integrity: sha512-yi58uVyoAcK/Nq1inRY56ZSjKypBNKTa/1mcL8qdl6oJeEaDbOldlzrGn7P6Q3Id5d+SYNGc5AJgc4vGhjs5+g==}
     peerDependencies:
@@ -1388,6 +1412,35 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@radix-ui/react-slot': 1.0.2_u5zja476buyywzbvglb2fbhaii
+      '@types/react': 18.2.37
+      '@types/react-dom': 18.2.15
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-scroll-area/1.0.5_odyphbpq4up353b3xkkenmy5wy:
+    resolution: {integrity: sha512-b6PAgH4GQf9QEn8zbT2XUHpW5z8BzqEc7Kl11TwDrvuTrxlkcjTD5qa/bxgKr+nmuXKu4L/W5UZ4mlP/VG/5Gw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@radix-ui/number': 1.0.1
+      '@radix-ui/primitive': 1.0.1
+      '@radix-ui/react-compose-refs': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@radix-ui/react-context': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@radix-ui/react-direction': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@radix-ui/react-presence': 1.0.1_odyphbpq4up353b3xkkenmy5wy
+      '@radix-ui/react-primitive': 1.0.3_odyphbpq4up353b3xkkenmy5wy
+      '@radix-ui/react-use-callback-ref': 1.0.1_u5zja476buyywzbvglb2fbhaii
+      '@radix-ui/react-use-layout-effect': 1.0.1_u5zja476buyywzbvglb2fbhaii
       '@types/react': 18.2.37
       '@types/react-dom': 18.2.15
       react: 18.2.0

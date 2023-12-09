@@ -23,39 +23,34 @@ function QuestionCard({
   isComplete,
 }: QuestionProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
-  const shuffledAnswers = useRef<any>([]);
+  const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
   useEffect(() => {
-    // Assuming correct_answer and incorrect_answers are available here
-    if (shuffledAnswers.current.length === 0) {
-      shuffledAnswers.current = _.shuffle([
-        correct_answer,
-        ...incorrect_answers,
-      ]);
-    }
+    setShuffledAnswers(_.shuffle([correct_answer, ...incorrect_answers]));
   }, [correct_answer, incorrect_answers]);
-
-  const selectAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (isComplete) return;
-    setSelectedAnswer(e.currentTarget.innerText);
-  };
-
-  function htmlDecode(input: string) {
-    var doc = new DOMParser().parseFromString(input, 'text/html');
-    return doc.documentElement.textContent;
-  }
-
   const renderAnswers = () => {
     if (type === 'boolean') {
       return (
         <div className='flex flex-col gap-2'>
           <Button
-            onClick={selectAnswer}
+            onClick={() => {
+              if (isComplete) return;
+              if ('True' === correct_answer) {
+              } else {
+              }
+              setSelectedAnswer('True');
+            }}
             variant={selectedAnswer === 'True' ? 'default' : 'outline'}
           >
             True
           </Button>
           <Button
-            onClick={selectAnswer}
+            onClick={() => {
+              if (isComplete) return;
+              if ('False' === correct_answer) {
+              } else {
+              }
+              setSelectedAnswer('False');
+            }}
             variant={selectedAnswer === 'False' ? 'default' : 'outline'}
           >
             False
@@ -65,16 +60,23 @@ function QuestionCard({
     } else {
       return (
         <div className='flex flex-col gap-2'>
-          {shuffledAnswers.current.map((answer: string) => (
-            <Button
-              onClick={selectAnswer}
-              variant={
-                selectedAnswer === htmlDecode(answer) ? 'default' : 'outline'
-              }
-            >
-              <span dangerouslySetInnerHTML={{ __html: answer }} />
-            </Button>
-          ))}
+          {shuffledAnswers.map((answer: string) => {
+            return (
+              <Button
+                className='h-auto'
+                onClick={() => {
+                  if (isComplete) return;
+                  if (answer === correct_answer) {
+                  } else {
+                  }
+                  setSelectedAnswer(answer);
+                }}
+                variant={selectedAnswer === answer ? 'default' : 'outline'}
+              >
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
+              </Button>
+            );
+          })}
         </div>
       );
     }
@@ -85,16 +87,21 @@ function QuestionCard({
         <span dangerouslySetInnerHTML={{ __html: question }} />
       </TableCell>
       <TableCell>{difficulty}</TableCell>
-      <TableCell>{category}</TableCell>
-      {/* <TableCell>{type}</TableCell> */}
+      <TableCell className='w-[250px]'>
+        {<span dangerouslySetInnerHTML={{ __html: category }} />}
+      </TableCell>
       <TableCell>{renderAnswers()}</TableCell>
       <TableCell
         className={`${
           isComplete ? 'opacity-100' : 'opacity-0'
         } cursor-default flex justify-center items-center`}
       >
-        <Button variant={'destructive'}>
-          <span dangerouslySetInnerHTML={{ __html: correct_answer }} />
+        <Button
+          variant={
+            selectedAnswer === correct_answer ? 'correct' : 'destructive'
+          }
+        >
+          {selectedAnswer === correct_answer ? 'Correct' : 'Incorrect'}
         </Button>
       </TableCell>
     </TableRow>

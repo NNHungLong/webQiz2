@@ -101,6 +101,9 @@ export default function Quiz() {
       <TimeoutClock timeLeft={timeLeft} />
       <Table className='table-auto p-8 border-gray-500'>
         <TableCaption>
+          {/* <h3 className='my-4 h-[20px] font-semibold text-black'>
+            {isComplete ? `Result: ${0}/${results.length}` : ''}
+          </h3> */}
           <Button
             className='mx-4'
             onClick={handleOnRetry}
@@ -122,7 +125,6 @@ export default function Quiz() {
             <TableHead className=''>Question</TableHead>
             <TableHead>Difficulty</TableHead>
             <TableHead>Category</TableHead>
-            {/* <TableHead>Type</TableHead> */}
             <TableHead>Answers</TableHead>
             <TableHead>Result</TableHead>
           </TableRow>

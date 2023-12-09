@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/components/ui/select';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 interface SelectProps {
   items: {
@@ -14,16 +15,17 @@ interface SelectProps {
   }[];
   name: string;
   title: string;
+  className?: string;
 }
 
-export function SelectTag({ name, title, items }: SelectProps) {
+export function SelectTag({ name, title, items, className }: SelectProps) {
   return (
-    <div>
+    <div className={className || ''}>
       <Select name={name}>
-        <SelectTrigger className='w-[800px]'>
+        <SelectTrigger>
           <SelectValue placeholder={title} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className='max-h-[300px]'>
           {items?.map((item) => (
             <SelectItem key={item.id} value={item.id}>
               {item.name}
